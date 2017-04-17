@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=WebContent/inventory/js/jquery.min.js,WebContent/js/jquery-1.11.1.min.js,WebContent/assets,WebContent/login/js/jquery-1.11.1.min.js
+validator.Unchecked=

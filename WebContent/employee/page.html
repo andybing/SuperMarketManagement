@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>更新库存</title>
+</head>
+   <script language=javascript>
+function hero()
+{
+var herowidth=40;//改为你要的网页宽度
+var heroheight=30;//改为你要的网页高度
+window.resizeTo(herowidth,heroheight);
+}
+hero();
+</script> 
+	<script type="text/javascript" src="../assets/scripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+		
+		var url = location.href;
+		//获取pid的参数值
+		var es = /productID=/;
+		es.exec(url);
+		var productID = RegExp.rightContext;
+		var aurl = "&productID=" + productID;
+		$("form[id='newform']").attr("action", "modifyamount?productID=" + productID);
+
+		//var servlet = "productQuery?productID=" + productID;
+		$.getJSON("updateproduct?productID="+productID, function(jsonData) {
+			
+			$("input[id='productID']").val(jsonData.productID);
+			$("input[id='name']").val(jsonData.name);		
+			$("input[id='amount']").val(jsonData.amount);
+		});
+	});
+	  </script>
+	<!--  <script type="text/javascript">
+	  function subform(){
+		
+		    form.submit();//提交表单
+		    alert("成功！")
+		    window.close();//关闭窗口
+		 }
+	  }
+	  </script>-->
+<body onresize=hero();>
+
+    <div class="container">
+			<div class="col-md-3"></div>
+			<div class="col-md-6 col-xs-12 login-right">
+				<h3>更新库存</h3>
+
+				<form id="newform"  method="post" action="modifyamount" onsubmit="window.opener=null;window.close();" >
+				<div>
+						<span>isbn编码&nbsp;&nbsp;
+						</span> <input type="text" name="productID" id="productID" readonly="readonly">
+					</div>
+					<br>
+					<div>
+						<span>商品名称 &nbsp;
+						</span> <input type="text" name="name" id="name" readonly="readonly">
+					</div>
+					<br>
+					<div>
+						<span>更新数量 &nbsp;
+						</span> <input type="text" name="amount" id="amount">
+					</div>
+					<br>
+					<input type="submit" value="提交" >
+				</form>
+				
+			</div>
+			<div class="clearfix"></div>
+			<div class="col-md-3"></div>
+		</div>
+   
+</body>
+</html>
